@@ -1,0 +1,30 @@
+name: DockerOps CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Docker Compose File
+        run: docker compose config
+
+      - name: Check Bash Script Syntax
+        run: |
+          bash -n setup.sh
+          bash -n start.sh
+          bash -n stop.sh
+          bash -n monitor.sh
+          bash -n backup.sh
+          bash -n cleanup.sh
