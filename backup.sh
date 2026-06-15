@@ -16,9 +16,7 @@ DATE=$(date +%F-%H-%M-%S)
 
 echo "Creating MySQL dump..."
 
-docker exec mysql-db mysqldump -uroot -proot123 --all-databases > backups/mysql-$DATE.sql
-
-if [ $? -eq 0 ]; then
+if docker exec mysql-db mysqldump -uroot -proot123 --all-databases > backups/mysql-"$DATE".sql; then
     echo "Backup successful!"
     echo "Saved at: backups/mysql-$DATE.sql"
 else
