@@ -22,15 +22,15 @@ jobs:
 
       - name: Check Bash Script Syntax
         run: |
-          bash -n setup.sh
-          bash -n start.sh
-          bash -n stop.sh
-          bash -n monitor.sh
-          bash -n backup.sh
-          bash -n cleanup.sh
+          bash -n scripts/setup.sh
+          bash -n scripts/start.sh
+          bash -n scripts/stop.sh
+          bash -n scripts/monitor.sh
+          bash -n scripts/backup.sh
+          bash -n scripts/cleanup.sh
 
       - name: Install ShellCheck
         run: sudo apt-get update && sudo apt-get install -y shellcheck
 
       - name: Run ShellCheck
-        run: shellcheck *.sh
+        run: shellcheck scripts/*.sh
