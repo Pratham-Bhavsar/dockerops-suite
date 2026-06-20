@@ -65,6 +65,21 @@ While working with Kubernetes, I learned about:
 
 ---
 
+## Kubernetes Secret Configuration
+
+Before deploying the MySQL StatefulSet, update the Kubernetes secret file:
+
+```yaml
+MYSQL_ROOT_PASSWORD: CHANGE_ME
+```
+
+Replace `CHANGE_ME` with your own secure password and then apply the secret:
+
+```bash
+kubectl apply -f kubernetes/mysql-secret.yml
+```
+
+The placeholder is intentionally used to avoid storing sensitive credentials in the repository.
 ### Stateful MySQL Deployment
 
 Since databases require persistent storage, I deployed MySQL as a StatefulSet instead of a Deployment.
