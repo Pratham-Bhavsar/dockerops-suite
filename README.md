@@ -1,10 +1,12 @@
-DockerOps Suite
+# DockerOps Suite
 
 ## About the Project
 
-DockerOps Suite started as a simple Docker project where I wanted to automate the deployment and management of a MySQL container using Bash scripts. As I learned more about DevOps tools, I gradually expanded the project by adding Docker Compose, GitHub Actions, and eventually Kubernetes.
+DockerOps Suite started as a simple Docker project where I wanted to automate the deployment and management of a MySQL container using Bash scripts.
 
-The goal of this project was not only to deploy applications but also to understand how modern DevOps workflows are built, from containerization to orchestration.
+As I learned more about DevOps tools and practices, I gradually expanded the project by adding Docker Compose, GitHub Actions, Kubernetes, Prometheus, and Grafana.
+
+The main goal of this project was not just to deploy applications, but to gain hands-on experience with the tools and workflows commonly used in modern DevOps environments.
 
 ---
 
@@ -20,6 +22,10 @@ I created several Bash scripts to automate common tasks such as:
 * Creating database backups
 * Cleaning up resources
 
+This helped me understand how automation can simplify repetitive administrative tasks.
+
+---
+
 ### Docker Compose
 
 After working with standalone containers, I migrated the setup to Docker Compose to manage multiple services more efficiently.
@@ -31,17 +37,23 @@ Services used:
 
 Environment variables are managed using a `.env` file.
 
+---
+
 ### GitHub Actions
 
 To get familiar with CI/CD concepts, I integrated GitHub Actions into the project.
 
-The workflow automatically checks shell scripts using ShellCheck whenever changes are pushed to the repository.
+The workflow automatically validates shell scripts using ShellCheck whenever code is pushed to the repository.
+
+This gave me a basic understanding of automated code validation and CI pipelines.
+
+---
 
 ### Kubernetes
 
-After completing the Docker-based setup, I migrated the application to Kubernetes using Kind.
+After completing the Docker-based setup, I migrated the application to Kubernetes using Kind (Kubernetes in Docker).
 
-While doing this, I learned about:
+While working with Kubernetes, I learned about:
 
 * Deployments
 * Services
@@ -51,13 +63,27 @@ While doing this, I learned about:
 * Persistent Volume Claims (PVC)
 * StatefulSets
 
+---
+
 ### Stateful MySQL Deployment
 
-Since databases need persistent storage, I deployed MySQL as a StatefulSet instead of a Deployment.
+Since databases require persistent storage, I deployed MySQL as a StatefulSet instead of a Deployment.
 
-The database uses Persistent Volumes to ensure data is not lost when pods are recreated.
+The database uses Persistent Volume Claims to ensure data remains available even if pods are recreated.
 
-I tested this by creating data inside MySQL, deleting the pod, and verifying that the data was still available after Kubernetes recreated the pod.
+To verify persistence, I created data inside MySQL, deleted the pod, and confirmed that the data was still available after Kubernetes recreated the pod.
+
+---
+
+### Monitoring with Prometheus & Grafana
+
+To understand monitoring and observability, I added Prometheus and Grafana to the Kubernetes environment.
+
+Using Prometheus, I collected cluster metrics, and Grafana was used to visualize those metrics through dashboards.
+
+I also configured Metrics Server to monitor resource utilization within the cluster.
+
+This helped me learn the basics of monitoring Kubernetes workloads and analyzing system performance.
 
 ---
 
@@ -72,6 +98,8 @@ I tested this by creating data inside MySQL, deleting the pod, and verifying tha
 * Kubernetes (Kind)
 * MySQL 8
 * Adminer
+* Prometheus
+* Grafana
 
 ---
 
@@ -82,6 +110,7 @@ dockerops-suite/
 │
 ├── backups/
 ├── kubernetes/
+│   └── monitoring/
 ├── scripts/
 │
 ├── docker-compose.yml
@@ -104,6 +133,21 @@ This project helped me understand:
 * Kubernetes architecture
 * Stateful applications
 * Persistent storage management
+* Monitoring and observability
+* Prometheus and Grafana basics
 
-It also gave me practical experience in troubleshooting containers, networking issues, storage configuration, and Kubernetes resources.
+It also gave me practical experience in troubleshooting containers, networking issues, storage configuration, Kubernetes resources, and monitoring tools.
 
+---
+
+## Future Improvements
+
+Some improvements I plan to explore in the future:
+
+* Jenkins-based CI/CD pipelines
+* Kubernetes Ingress
+* Helm Charts
+* Ansible Automation
+* Cloud deployment on AWS
+
+This project represents my learning journey through Docker, Kubernetes, automation, and monitoring while building a practical DevOps environment from scratch.
